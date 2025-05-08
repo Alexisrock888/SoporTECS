@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SoporTECS</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+        crossorigin="anonymous" />
+</head>
+<body class="body-style">
+  <div id="header"></div>
+  <div id="main"></div>
+  <div id="footer"></div>
+
+  <script>
+    async function loadComponent(id, file) {
+      const res = await fetch(file);
+      const html = await res.text();
+      document.getElementById(id).innerHTML = html;
+    }
+
+    function initMenu() {
+      const btn = document.getElementById("menu-toggle");
+      const menu = document.getElementById("nav-list");
+      if (!btn || !menu) return;
+      btn.addEventListener("click", () => {
+        menu.classList.toggle("show");
+      });
+    }
+
+    (async () => {
+      await loadComponent("header", "header.html");
+      initMenu();
+      await loadComponent("main", "store-main.html");
+      await loadComponent("footer", "footer.html");
+    })();
+  </script>
+</body>
+</html>
