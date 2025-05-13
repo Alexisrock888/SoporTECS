@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Marketplace de Técnicos - SoporTECS</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+        crossorigin="anonymous" />
+</head>
+<body class="body-style">
+  <!-- Header, Main y Footer se cargan dinámicamente -->
+  <div id="header"></div>
+  <div id="main"></div>
+  <div id="footer"></div>
+
+  <script>
+    // Carga un fragmento HTML en un contenedor dado
+    async function loadComponent(id, file) {
+      const res = await fetch(file);
+      const html = await res.text();
+      document.getElementById(id).innerHTML = html;
+    }
+
+    // Inicializa el menú hamburguesa
+    function initMenu() {
+      const btn = document.getElementById("menu-toggle");
+      const menu = document.getElementById("nav-list");
+      if (!btn || !menu) return;
+      btn.addEventListener("click", () => {
+        menu.classList.toggle("show");
+      });
+    }
+
+    // Carga los técnicos desde la API y monta las tarjetas
+    async function cargarTecnicos() {
+      const container = document.getElementById("tech-list");
+      try {
+        const res = await fetch("https://randomuser.me/api/?results=6&nat=es,us");
+        const data = await res.json();
+        const profesiones = [
+          "Soporte Técnico",
+          "Especialista en Redes",
+          "Ingeniero de Software",
+          "Técnico en Hardware",
+          "Consultor IT",
+          "Administrador de Sistemas"
+        ];
+        data.results.forEach((u, i) => {
+          const div = document.createElement("div");
+          div.className = "tech-card";
+          div.innerHTML = `
+            <img src="${u.picture.medium}" class="tech-img" alt="${u.name.first} ${u.name.last}">
+            <h3>${u.name.first} ${u.name.last}</h3>
+            <p class="tech-prof">${profesiones[i % profesiones.length]}</p>
+            <p class="tech-email">Contacto: ${u.email}</p>
+          `;
+          container.appendChild(div);
+        });
+      } catch (e) {
+        container.innerHTML = "<p style='color:red'>No se pudieron cargar los técnicos.</p>";
+      }
+    }
+
+    // Flujo de carga: header → menú → main → API → footer
+    (async () => {
+      await loadComponent("header", "header.html");
+      initMenu();
+      await loadComponent("main", "marketplace-main.html");
+      cargarTecnicos();
+      await loadComponent("footer", "footer.html");
+    })();
+  </script>
+</body>
+</html>
