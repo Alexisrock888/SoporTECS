@@ -1,2 +1,2 @@
-# SoporTECS
+# Alexis Alejandro Reyes Camargo
 # SoporTECS
