@@ -547,3 +547,14 @@ html, body {
 #main {
   flex: 1;
 }
+/* Estilo para el botón de PERFIL */
+#profile-btn i {
+  font-size: 1.1rem;
+  margin: 0 2px;
+}
+
+.profile-menu .nav-link {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
