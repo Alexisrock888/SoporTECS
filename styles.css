@@ -316,21 +316,141 @@
 .btn-circular:hover {
   background-color: #004494;
 }
-/* Footer siempre abajo */
 
-html, body {
-  height: 100%;
-  margin: 0;
+/* =====================================================
+   singin
+===================================================== */
+.login-section {
+  padding: 2rem;
+  max-width: 400px;
+  margin: 0 auto;
+  background-color: #ffffffcc;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.wrapper {
+.login-title {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.login-description {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.login-form {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  gap: 1rem;
 }
 
-main {
-  flex: 1;
+.login-form label {
+  font-weight: bold;
 }
 
+.login-form input {
+  padding: 0.6rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
 
+.btn-iniciar {
+  padding: 0.8rem;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn-iniciar:hover {
+  background-color: #0056b3;
+}
+
+.login-extra {
+  text-align: center;
+  margin-top: 1rem;
+}
+/* Registro */
+.btn-iniciar {
+  padding: 0.8rem;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* Botón de inicio de sesión */
+.btn-iniciar.login {
+  background-color: #007bff;
+}
+
+.btn-iniciar.login:hover {
+  background-color: #0056b3;
+}
+
+/* Botón de registro */
+.btn-iniciar.register {
+  background-color: #28a745;
+}
+
+.btn-iniciar.register:hover {
+  background-color: #218838;
+}
+/* Perfil */
+.perfil-section {
+  padding: 2rem;
+  max-width: 500px;
+  margin: 0 auto;
+  background-color: #ffffffcc;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.perfil-title {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.perfil-info {
+  margin-bottom: 2rem;
+  color: #555;
+}
+
+.perfil-actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.perfil-actions .btn-iniciar {
+  text-decoration: none;
+  text-align: center;
+  display: inline-block;
+  padding: 0.8rem 1.2rem;
+  border-radius: 4px;
+  color: #fff;
+}
+
+.perfil-actions .login {
+  background-color: #007bff;
+}
+
+.perfil-actions .login:hover {
+  background-color: #0056b3;
+}
+
+.perfil-actions .register {
+  background-color: #28a745;
+}
+
+.perfil-actions .register:hover {
+  background-color: #218838;
+}
+
+/* =====================================================
+   Idioma
+===================================================== */
