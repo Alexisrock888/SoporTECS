@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SoporTECS</title>
+  <title>Centro de soluciones - SoporTECS</title>
   <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
@@ -21,21 +21,57 @@
       document.getElementById(id).innerHTML = html;
     }
 
-    function initMenu() {
-      const btn = document.getElementById("menu-toggle");
-      const menu = document.getElementById("nav-list");
-      if (!btn || !menu) return;
-      btn.addEventListener("click", () => {
-        menu.classList.toggle("show");
+    // Función para resaltar el enlace activo según la URL
+    function resaltarEnlaceActivo() {
+      const rutaActual = window.location.pathname.split("/").pop();
+      const enlaces = document.querySelectorAll(".nav-link");
+
+      enlaces.forEach(link => {
+        const href = link.getAttribute("href");
+        if (href === rutaActual) {
+          link.classList.add("activo");
+        } else {
+          link.classList.remove("activo");
+        }
       });
     }
 
-    (async () => {
+    // Función para activar el clic en los enlaces del menú
+    function activarClicEnMenu() {
+      const enlaces = document.querySelectorAll(".nav-link");
+
+      enlaces.forEach(link => {
+        link.addEventListener("click", () => {
+          enlaces.forEach(el => el.classList.remove("activo"));
+          link.classList.add("activo");
+        });
+      });
+    }
+
+    // Función para manejar la apertura/cierre del menú hamburguesa
+    function activarMenuHamburguesa() {
+      const btn = document.getElementById("menu-toggle");
+      const navList = document.getElementById("nav-list");
+
+      if (btn && navList) {
+        btn.addEventListener("click", () => {
+          navList.classList.toggle("show");
+        });
+      }
+    }
+
+    // Función que carga todos los componentes
+    async function initPage() {
       await loadComponent("header", "header.html");
-      initMenu();
-      await loadComponent("main", "center-main.html");
-      await loadComponent("footer", "footer.html");
-    })();
+      activarMenuHamburguesa();  // Activamos la hamburguesa
+      resaltarEnlaceActivo();    // Resaltamos el enlace activo
+      activarClicEnMenu();       // Activamos el clic en los enlaces
+      await loadComponent("main", "center-main.html");  // Cargamos el contenido principal
+      await loadComponent("footer", "footer.html");    // Cargamos el pie de página
+    }
+
+    // Ejecutamos la función cuando el DOM esté completamente cargado
+    document.addEventListener("DOMContentLoaded", initPage);
   </script>
 </body>
 </html>

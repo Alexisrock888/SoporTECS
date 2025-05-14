@@ -7,40 +7,48 @@
   </div>
   <nav class="navbar">
     <ul id="nav-list" class="nav-list">
-<li><a href="index.html">Inicio</a></li>
-<li><a href="store.html">Tienda de Software</a></li>
-<li><a href="centersolutions.html">Centro de Soluciones</a></li>
-<li><a href="marketplacetecnicos.html">Marketplace de Técnicos</a></li>
-<li><a href="signin.html">Iniciar Sesión</a></li>
-<li><a href="register.html">Registrarse</a></li>
-<li><a href="perfil.html">Perfil</a></li>
-<li class="idioma-dropdown">
-  <select id="language-selector">
-    <option value="es">🇪🇸 ES</option>
-    <option value="en">🇺🇸 EN</option>
-    <option value="pt">🇧🇷 PT</option>
-  </select>
-</li>
+      <li><a href="index.html" class="nav-link">Inicio</a></li>
+      <li><a href="store.html" class="nav-link">Tienda de Software</a></li>
+      <li><a href="centersolutions.html" class="nav-link">Centro de Soluciones</a></li>
+      <li><a href="marketplacetecnicos.html" class="nav-link">Marketplace de Técnicos</a></li>
+      <li><a href="signin.html" class="nav-link">Iniciar Sesión</a></li>
+      <li><a href="register.html" class="nav-link">Registrarse</a></li>
+      <li><a href="perfil.html" class="nav-link">Perfil</a></li>
+      <li class="idioma-dropdown">
+        <select id="language-selector">
+          <option value="es">🇪🇸 ES</option>
+          <option value="en">🇺🇸 EN</option>
+          <option value="pt">🇧🇷 PT</option>
+        </select>
+      </li>
     </ul>
   </nav>
 </header>
+
 <script>
   document.addEventListener("DOMContentLoaded", () => {
     const selector = document.getElementById("language-selector");
-
-    // Cargar idioma guardado
     const savedLang = localStorage.getItem("idiomaPreferido");
+
     if (savedLang) {
       selector.value = savedLang;
     }
 
-    // Guardar idioma al cambiar
     selector.addEventListener("change", () => {
       const idioma = selector.value;
       localStorage.setItem("idiomaPreferido", idioma);
       alert("Idioma guardado: " + idioma);
-      // Aquí podrías recargar el sitio si usas traducciones dinámicas
+      // Puedes recargar si usas traducción dinámica
       // location.reload();
     });
+
+    const toggleBtn = document.getElementById("menu-toggle");
+    const navList = document.getElementById("nav-list");
+
+    if (toggleBtn && navList) {
+      toggleBtn.addEventListener("click", () => {
+        navList.classList.toggle("show");
+      });
+    }
   });
 </script>

@@ -23,8 +23,35 @@
       document.getElementById(id).innerHTML = html;
     }
 
-    // Inicializa el menú hamburguesa
-    function initMenu() {
+    // Función para resaltar el enlace activo según la URL
+    function resaltarEnlaceActivo() {
+      const rutaActual = window.location.pathname.split("/").pop(); // ej: marketplace-main.html
+      const enlaces = document.querySelectorAll(".nav-link");
+
+      enlaces.forEach(link => {
+        const href = link.getAttribute("href");
+        if (href === rutaActual) {
+          link.classList.add("activo");
+        } else {
+          link.classList.remove("activo");
+        }
+      });
+    }
+
+    // Función para activar el clic en los enlaces del menú
+    function activarClicEnMenu() {
+      const enlaces = document.querySelectorAll(".nav-link");
+
+      enlaces.forEach(link => {
+        link.addEventListener("click", () => {
+          enlaces.forEach(el => el.classList.remove("activo"));
+          link.classList.add("activo");
+        });
+      });
+    }
+
+    // Función para manejar la apertura/cierre del menú hamburguesa
+    function activarMenuHamburguesa() {
       const btn = document.getElementById("menu-toggle");
       const menu = document.getElementById("nav-list");
       if (!btn || !menu) return;
@@ -63,14 +90,19 @@
       }
     }
 
-    // Flujo de carga: header → menú → main → API → footer
-    (async () => {
+    // Función que carga todos los componentes
+    async function initPage() {
       await loadComponent("header", "header.html");
-      initMenu();
-      await loadComponent("main", "marketplace-main.html");
-      cargarTecnicos();
-      await loadComponent("footer", "footer.html");
-    })();
+      activarMenuHamburguesa();  // Activamos la hamburguesa
+      resaltarEnlaceActivo();    // Resaltamos el enlace activo
+      activarClicEnMenu();       // Activamos el clic en los enlaces
+      await loadComponent("main", "marketplace-main.html");  // Cargamos el contenido principal
+      cargarTecnicos();          // Cargamos los técnicos desde la API
+      await loadComponent("footer", "footer.html");    // Cargamos el pie de página
+    }
+
+    // Ejecutamos la función cuando el DOM esté completamente cargado
+    document.addEventListener("DOMContentLoaded", initPage);
   </script>
 </body>
 </html>

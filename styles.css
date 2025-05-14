@@ -59,9 +59,6 @@
     transition: color 0.3s ease;
   }
   
-  .nav-list a:hover {
-    color: #ffd700;
-  }
   
   .menu-toggle {
     display: none;
@@ -461,4 +458,13 @@
   font-size: 0.9rem;
   background-color: white;
   color: #333;
+}
+
+/*.nav-list a:hover {
+  color: #ffcc00;
+}
+*/
+.nav-link.activo {
+  color: gold;
+  font-weight: bold;
 }
