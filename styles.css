@@ -459,12 +459,19 @@
   background-color: white;
   color: #333;
 }
-
-/*.nav-list a:hover {
-  color: #ffcc00;
+/* Estilo para el enlace en estado hover */
+.nav-list a:hover {
+  color: #ffcc00; /* Color dorado al pasar el mouse sobre el enlace */
+  text-decoration: none; /* Opcional: elimina el subrayado */
 }
-*/
+
+/* Estilo para el enlace en estado activo */
 .nav-link.activo {
-  color: gold;
-  font-weight: bold;
+  color: gold; /* Color dorado cuando el enlace está activo */
+  font-weight: bold; /* Texto en negrita cuando el enlace está activo */
+}
+
+/* Estilo para mantener el color dorado incluso después de hacer clic, si es necesario */
+.nav-list a:active {
+  color: #ffcc00; /* El color dorado al hacer clic */
 }
