@@ -567,3 +567,65 @@ html, body {
   margin: 0 auto 20px;
   border-radius: 12px;
 }
+/* Header con nuevo gradiente */
+header {
+  background: linear-gradient(135deg, #0061f2, #00b0ff); /* Nuevo gradiente azul brillante */
+  color: #ffffff;
+}
+
+header .header-title {
+  font-size: 32px;
+  font-weight: bold;
+}
+
+/* Navegación con nuevo gradiente */
+.navbar {
+  background: linear-gradient(135deg, #0061f2, #00b0ff); /* Nuevo gradiente en la barra de navegación */
+}
+
+.nav-link {
+  color: #ffffff;
+  text-decoration: none;
+  padding: 12px 15px;
+  display: block;
+}
+
+.nav-link:hover,
+.nav-link.activo {
+  background-color: #0061f2; /* Un tono de azul brillante para hover */
+  border-radius: 5px;
+}
+
+/* Fondo con nuevo gradiente */
+body {
+  background: linear-gradient(180deg, #f4f7fb, #0061f2);
+  background-size: 200% 200%; /* Hacer el fondo más grande */
+  animation: gradientAnimation 5s ease infinite; /* Animación para un efecto más sutil */
+  color: #333333;
+  font-family: Arial, sans-serif;
+}
+
+@keyframes gradientAnimation {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Footer con nuevo gradiente */
+footer {
+  background: linear-gradient(135deg, #003d4d, #00b0ff); /* Degradado en footer con el nuevo color */
+  color: #ffffff;
+  padding: 20px 0;
+  text-align: center;
+}
+
+footer a {
+  color: #ffffff;
+  text-decoration: none;
+  padding: 5px 10px;
+}
+
+footer a:hover {
+  background-color: #0061f2; /* Tono de azul brillante para hover */
+  border-radius: 5px;
+}
