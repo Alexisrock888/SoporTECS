@@ -11,9 +11,14 @@
       <li><a href="store.html" class="nav-link">Tienda de Software</a></li>
       <li><a href="centersolutions.html" class="nav-link">Centro de Soluciones</a></li>
       <li><a href="marketplacetecnicos.html" class="nav-link">Marketplace de Técnicos</a></li>
-      <li><a href="signin.html" class="nav-link">Iniciar Sesión</a></li>
-      <li><a href="register.html" class="nav-link">Registrarse</a></li>
-      <li><a href="perfil.html" class="nav-link">Perfil</a></li>
+      <li class="nav-item profile-menu">
+        <button id="profile-btn" class="nav-link">Perfil <i class="fas fa-caret-down"></i></button>
+        <ul id="profile-dropdown" class="dropdown-menu">
+          <li><a href="signin.html">Iniciar sesión</a></li>
+          <li><a href="register.html">Registrarse</a></li>
+        </ul>
+      </li>
+      <!-- Selector de idioma agregado después del perfil -->
       <li class="idioma-dropdown">
         <select id="language-selector">
           <option value="es">🇪🇸 ES</option>
@@ -24,31 +29,3 @@
     </ul>
   </nav>
 </header>
-
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const selector = document.getElementById("language-selector");
-    const savedLang = localStorage.getItem("idiomaPreferido");
-
-    if (savedLang) {
-      selector.value = savedLang;
-    }
-
-    selector.addEventListener("change", () => {
-      const idioma = selector.value;
-      localStorage.setItem("idiomaPreferido", idioma);
-      alert("Idioma guardado: " + idioma);
-      // Puedes recargar si usas traducción dinámica
-      // location.reload();
-    });
-
-    const toggleBtn = document.getElementById("menu-toggle");
-    const navList = document.getElementById("nav-list");
-
-    if (toggleBtn && navList) {
-      toggleBtn.addEventListener("click", () => {
-        navList.classList.toggle("show");
-      });
-    }
-  });
-</script>

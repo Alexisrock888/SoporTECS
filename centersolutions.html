@@ -15,6 +15,7 @@
   <div id="footer"></div>
 
   <script>
+    // Cargar el fragmento HTML de un archivo y asignarlo al contenedor indicado
     async function loadComponent(id, file) {
       const res = await fetch(file);
       const html = await res.text();
@@ -23,7 +24,7 @@
 
     // Función para resaltar el enlace activo según la URL
     function resaltarEnlaceActivo() {
-      const rutaActual = window.location.pathname.split("/").pop();
+      const rutaActual = window.location.pathname.split("/").pop(); // Ej: centersolutions.html
       const enlaces = document.querySelectorAll(".nav-link");
 
       enlaces.forEach(link => {
@@ -60,13 +61,36 @@
       }
     }
 
+    // Función para manejar el menú desplegable del perfil
+    function activarMenuPerfil() {
+      const btn = document.getElementById("profile-btn");
+      const dropdown = document.getElementById("profile-dropdown");
+      if (!btn || !dropdown) return;
+
+      btn.addEventListener("click", function(event) {
+        dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+        event.stopPropagation();
+      });
+
+      document.addEventListener("click", function(event) {
+        if (!dropdown.contains(event.target) && !event.target.matches("#profile-btn")) {
+          dropdown.style.display = "none";
+        }
+      });
+    }
+
     // Función que carga todos los componentes
     async function initPage() {
       await loadComponent("header", "header.html");
-      activarMenuHamburguesa();  // Activamos la hamburguesa
+
+      // Activamos las funcionalidades de menú
+      activarMenuPerfil();      // Activamos el menú desplegable de perfil
+      activarMenuHamburguesa();  // Activamos el menú hamburguesa
       resaltarEnlaceActivo();    // Resaltamos el enlace activo
       activarClicEnMenu();       // Activamos el clic en los enlaces
-      await loadComponent("main", "center-main.html");  // Cargamos el contenido principal
+
+      // Cargamos el contenido principal y pie de página
+      await loadComponent("main", "center-main.html");  // Cargamos el contenido del centro de soluciones
       await loadComponent("footer", "footer.html");    // Cargamos el pie de página
     }
 

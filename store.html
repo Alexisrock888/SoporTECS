@@ -58,18 +58,42 @@
       });
     }
 
+    // Función para manejar el menú desplegable del perfil
+    function activarMenuPerfil() {
+      const btn = document.getElementById("profile-btn");
+      const dropdown = document.getElementById("profile-dropdown");
+      if (!btn || !dropdown) return;
+
+      btn.addEventListener("click", function(event) {
+        dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+        event.stopPropagation();
+      });
+
+      document.addEventListener("click", function(event) {
+        if (!dropdown.contains(event.target) && !event.target.matches("#profile-btn")) {
+          dropdown.style.display = "none";
+        }
+      });
+    }
+
     // Función que carga todos los componentes
     async function initPage() {
       await loadComponent("header", "header.html");
-      activarMenuHamburguesa();  // Activamos la hamburguesa
-      resaltarEnlaceActivo();    // Resaltamos el enlace activo
-      activarClicEnMenu();       // Activamos el clic en los enlaces
-      await loadComponent("main", "store-main.html");  // Cargamos el contenido principal
+
+      // Inicializamos el menú de perfil después de cargar el header
+      activarMenuPerfil();  // Aseguramos que el menú de perfil se active siempre
+      activarMenuHamburguesa();  // Activamos el menú hamburguesa
+      resaltarEnlaceActivo();  // Resaltamos el enlace activo
+      activarClicEnMenu();  // Activamos el clic en los enlaces
+
+      // Cargamos el contenido principal y footer
+      await loadComponent("main", "store-main.html");  // Cargamos el contenido principal de la tienda
       await loadComponent("footer", "footer.html");    // Cargamos el pie de página
     }
 
     // Ejecutamos la función cuando el DOM esté completamente cargado
     document.addEventListener("DOMContentLoaded", initPage);
+    
   </script>
 </body>
 </html>

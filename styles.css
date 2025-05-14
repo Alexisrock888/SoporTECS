@@ -475,3 +475,56 @@
 .nav-list a:active {
   color: #ffcc00; /* El color dorado al hacer clic */
 }
+/* Contenedor del botón de perfil */
+.profile-item {
+  position: relative;
+  list-style: none;
+}
+
+/* Estilo del desplegable */
+.profile-menu {
+  position: relative;
+}
+
+#profile-btn {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 10px 15px;
+  font-family: inherit;
+}
+
+#profile-btn:hover,
+#profile-btn:focus {
+  color: #ffcc00;
+}
+
+/* Menú desplegable */
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  background-color: #222;
+  padding: 0.5rem;
+  border-radius: 8px;
+  right: 0;
+  top: 100%;
+  z-index: 1000;
+}
+
+
+.dropdown-menu li a {
+  display: block;
+  padding: 10px 15px;
+  color: white;
+  text-decoration: none;
+}
+
+.dropdown-menu li a:hover {
+  background-color: #333;
+  color: #ffcc00;
+}
+.dropdown-menu.show {
+  display: block;
+}

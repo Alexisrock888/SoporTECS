@@ -5,7 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Registrarse - SoporTECS</title>
   <link rel="stylesheet" href="styles.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" crossorigin="anonymous" />
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+        crossorigin="anonymous" />
 </head>
 <body class="body-style">
   <!-- Header, Main y Footer se cargan dinámicamente -->
@@ -58,14 +60,33 @@
       });
     }
 
+    // ✅ Función para activar el menú desplegable del perfil
+    function activarMenuPerfil() {
+      const btn = document.getElementById("profile-btn");
+      const dropdown = document.getElementById("profile-dropdown");
+      if (!btn || !dropdown) return;
+
+      btn.addEventListener("click", function(event) {
+        dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+        event.stopPropagation();
+      });
+
+      document.addEventListener("click", function(event) {
+        if (!dropdown.contains(event.target) && !event.target.matches("#profile-btn")) {
+          dropdown.style.display = "none";
+        }
+      });
+    }
+
     // Función que carga todos los componentes
     async function initPage() {
       await loadComponent("header", "header.html");
-      activarMenuHamburguesa();  // Activamos la hamburguesa
-      resaltarEnlaceActivo();    // Resaltamos el enlace activo
-      activarClicEnMenu();       // Activamos el clic en los enlaces
-      await loadComponent("main", "register-main.html");  // Cargamos el contenido principal
-      await loadComponent("footer", "footer.html");    // Cargamos el pie de página
+      activarMenuPerfil();        // ✅ Activamos el menú del perfil
+      activarMenuHamburguesa();   // Activamos el menú hamburguesa
+      resaltarEnlaceActivo();     // Resaltamos el enlace activo
+      activarClicEnMenu();        // Activamos clic en enlaces
+      await loadComponent("main", "register-main.html");  // Contenido principal
+      await loadComponent("footer", "footer.html");       // Pie de página
     }
 
     // Ejecutamos la función cuando el DOM esté completamente cargado
