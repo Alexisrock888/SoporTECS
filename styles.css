@@ -528,3 +528,22 @@
 .dropdown-menu.show {
   display: block;
 }
+
+/* Asegura que el body ocupe toda la altura de la ventana */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* Convierte el body en un contenedor flex en columna */
+.body-style {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* El contenido principal debe expandirse para empujar el footer abajo */
+#main {
+  flex: 1;
+}
